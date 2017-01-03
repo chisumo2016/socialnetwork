@@ -31,6 +31,16 @@
         'as'   => 'logout'
     ]);
 
+    Route::get('/account', [
+    'uses' => 'UserController@getAccount',
+    'as'   =>'account'
+    ]);
+
+    Route::post('/updateaccount',[
+        'uses' => 'UserController@postSaveAccount',
+        'as'  => 'account.save'
+    ]);
+
     Route::get('/dashboard', [
         'uses' =>'PostController@getDashboard',
         'as'   =>'dashboard',
@@ -48,6 +58,21 @@
         'as'=>'post.delete',
         'middleware'=>'auth'
     ]);
+
+     Route::post('/edit',[
+    'uses' => 'PostController@postEditPost',
+    'as'   =>'edit'
+    ]);
+
+//    Route::post('/edit', function (\Illuminate\Http\Request $request){
+//        return response()->json(['message'=>$request['postId']]);
+//        /*
+//         * {
+//         *    message: '$request['body']'
+//         * }
+//         *
+//         */
+//    })->name('edit');
 
 
 

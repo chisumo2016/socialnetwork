@@ -17,7 +17,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <header><h3>What other people say .....</h3></header>
                 @foreach ($posts as $post)
-                    <article class="post">
+                    <article class="post" data-postid="{{ $post->id }}">
                         <p>{{$post->body}}</p>
                         <div class="info">
                             Posted by {{$post->user->first_name}} on {{$post->created_at}}
@@ -37,21 +37,16 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="edit-post">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Edit Post</h4>
+                    <h4 class="modal-title">Modal title</h4>
                 </div>
                 <div class="modal-body">
-
-                    <form>
-                        <div class="form-group">
-                            <label for="post-body">Edit the Post</label>
-                            <textarea name="post-body" id="post-body"  rows="" class="form-control"></textarea>
-                        </div>
-                    </form>
+                    <p>One fine body&hellip;</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -60,5 +55,10 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <script>
+        var token = '{{ Session::token() }}';
+
+    </script>
 
 @endsection
