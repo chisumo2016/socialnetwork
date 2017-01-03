@@ -26,6 +26,11 @@
         'as'   =>'signin'
     ]);
 
+    Route::get('/logout', [
+        'uses' =>'UserController@getLogout',
+        'as'   => 'logout'
+    ]);
+
     Route::get('/dashboard', [
         'uses' =>'PostController@getDashboard',
         'as'   =>'dashboard',

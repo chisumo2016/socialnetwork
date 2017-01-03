@@ -10,7 +10,8 @@ class PostController extends Controller
     public function  getDashboard()
     {
         //Fetch
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         return view('dashboard', compact('posts'));
     }
@@ -34,6 +35,9 @@ class PostController extends Controller
   public function  getDeletePost($post_id){
       //$post =Post::find($post_id)->first();
       $post =Post::where('id', $post_id)->first();
+      if(Auth::user() != $post->user){
+          return redirect()->back();
+      }
       $post->delete();
       return redirect()->route('dashboard')->with(['message' => 'Successfuly deleted!']);
 
