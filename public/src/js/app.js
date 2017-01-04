@@ -14,10 +14,11 @@ $('.post').find('.interaction').find('.edit').on('click', function (event) {
 });
 
 
-$('#modal-save').on('click', function () {
-    $.ajax({
+$('#modal-save').on('click', function() {
+     $.ajax({
         method: 'POST',
-        url: url,
+        url: urlEdit,
+        //data: {body: $('#post-body').val(), postId: postId, _token: $('meta[name="csrf-token"]').attr('content') }
         data: {body: $('#post-body').val(), postId: postId, _token: token}
     })
         .done(function (msg) {
@@ -26,3 +27,18 @@ $('#modal-save').on('click', function () {
         });
 });
 
+$('.like').on('click',function (event) {
+    event.preventDefault();
+    postId = event.target.parentNode.parentNode.dataset['postid'];
+    var isLike = event.target.previousElementSibling == null ? true : false;
+    $.ajax({
+        method:'POST',
+        url:urlLike,
+        data:{isLike : isLike, postId: postId, _token: token}
+    })
+     .done(function () {
+        //Change the page
+
+    });
+    //console.log(isLike);
+});

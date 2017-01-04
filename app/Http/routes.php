@@ -69,6 +69,12 @@
     'as'   =>'edit'
     ]);
 
+    Route::post('/like', [
+        'uses' => 'PostController@postLikePost',
+        'as'  =>'like'
+    ]) ;
+
+
 //    Route::post('/edit', function (\Illuminate\Http\Request $request){
 //        return response()->json(['message'=>$request['postId']]);
 //        /*
